@@ -1,0 +1,612 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+.body{
+  font-family: arial,
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    
+  }
+}
+
+/* shasowed class for check section */
+
+.shadow-0 {
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 0px 5px 0px, rgba(255, 255, 255, 0.1) 0px 0px 1px 0px;
+}
+
+
+/* customs classes */
+
+.font-space-grotesk {
+  font-family: var(--font-space-grotesk);
+}
+
+.font-bebas-neue {
+  font-family: var(--font-bebas-neue);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ffffff, #bdb6a1); /* Dégradé doré */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-alt {
+  background: linear-gradient(to bottom left, #a0875b, #daba5b); /* Dégradé doré */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* header background-images */
+.header-left {
+  background-image: url('/navbar/left.png');
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+  background-position: right center;
+}
+.header-right {
+  background-image: url('/navbar/right.png');
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+  background-position: left center;
+}
+
+/* pools buttons images */
+
+
+.pink_buy_now {
+  background-image: url('/buttons/pink_buy_now.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.pink_learn_more {
+  background-image: url('/buttons/pink_learn_more.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.gold_buy_now {
+  background-image: url('/buttons/gold_buy_now.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.purple_buy_now {
+  background-image: url('/buttons/purple_buy_now.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.purple_learn_more {
+  background-image: url('/buttons/purple_learn_more.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.gold_learn_more {
+  background-image: url('/buttons/gold_learn_more.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.pool-learnmore-purple {
+  background-image: url('/learn_more_button.svg');
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  cursor: pointer;
+}
+.pool-learnmore-gold {
+  background-image: url('/learn_more_button_alt.svg');
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.pool-learnmore-pink {
+  background-image: url('/pool-learnmore-pink.svg');
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  cursor: pointer;
+}
+
+.pool-buynow-purple {
+  background-image: url('/buy_now_button.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+
+.pool-buynow-gold {
+  background-image: url('/buy_now_button_alt.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+.horizontal-scroll-section {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.pool-buynow-pink {
+  background-image: url('/pool-buynow-pink.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  cursor: pointer;
+}
+
+
+
+.background-button-image {
+  background-image: url('/button_purple.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.background-about-image,
+.background-home-image {
+  background-image: none;
+}
+
+/* Pools card images */
+.background-pool-purple{
+  background-image: url('/substract_pool1.png');
+  background-repeat: no-repeat;
+  background-size: 110% 108%;
+  background-position: center;
+}
+.background-pool-gold{
+  background-image: url('/substract_pool2.png');
+  background-repeat: no-repeat;
+  background-size: 110% 108%;
+  background-position: center;
+}
+
+.background-pool-pink{
+  background-image: url('/pink_bg.png');
+  background-repeat: no-repeat;
+  background-size: 108% 104%;
+  background-position: center;
+}
+
+/* fonctioning card images */
+
+.fonctioning-card1{
+  background-image: url('/fonctioning_card1.png');
+  background-repeat: no-repeat;
+  background-size: 110% 110%;
+  background-position: center;
+}
+.fonctioning-card2{
+  background-image: url('/fonctioning_card4.png');
+  background-repeat: no-repeat;
+  background-size: 110% 110%;
+  background-position: center;
+}
+
+.fonctioning-card3{
+  background-image: url('/fonctioning_card3.png');
+  background-repeat: no-repeat;
+  background-size: 110% 110%;
+  background-position: center;
+}
+
+.on-chain {
+  background-image: url('/onchain.png');
+  background-repeat: no-repeat;
+  background-size: 105% 112%;
+  background-position: center;
+ 
+  opacity: 1;
+}
+.pool-meteors{
+  background-image: url('/pool_meteors.png');
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  background-position: top;
+}
+
+.pools-meteors{
+  background-image: url('/pools-meteors.png');
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  background-position: center;
+}
+.pools1-meteors{
+  background-image: url('/pools-meteors.png');
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  background-position: center;
+}
+
+
+
+.home-meteors{
+  background-image: url('/home_meteors.png');
+  background-repeat: no-repeat;
+  background-size: 70% 60%;
+  background-position: center;
+}
+
+.home-coins{
+  background-image: url('/home_coins.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.home-meteors-coins{
+  background-image: url('/home_meteors.png'), url('/home_coins.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 70% 60%, contain;
+  z-index: 9;
+}
+
+/* light purple / yellow */
+
+.light_purple{
+  background-image: url('/light/purple.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top;
+}
+
+.light_gold{
+  background-image: url('/light/gold.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top;
+}
+
+.light_pink{
+  background-image: url('/light/pink.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top;
+}
+
+/* functioning decoration */
+
+.light-purple-working{
+  background-image: url('/light_purple.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left -160px top;
+}
+
+.functioning_coin{
+  background-image: url('/fonctioning_coin.png');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: right 20% top 30%;
+}
+
+.functioning_deco{
+  background-image: url('/light_purple.png'), url('/fonctioning_coin.png');
+  background-repeat: no-repeat;
+  background-size: contain, 100px;  
+  background-position: left -160px top, right 20% top 30%;
+}
+
+/* country deco */
+
+.country-ticket{
+  background-image: url('/country_ticket.png');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+}
+
+/* hero deco */
+.hero-meteors{
+  background-image: url('/home_meteors.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom -100px center;
+}
+
+.hero-coins{
+  background-image: url('/hero_coins.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.hero-meteors-coins{
+  background-image: url('/home_meteors.png'), url('/home_coins.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 70% 60%, contain;
+}
+
+
+/* roadmap deco */
+
+.road_bullet{
+  background-image: url('/roadmap_bullet.png');
+  background-repeat: no-repeat;
+  background-size: 110% 108%;
+  background-position: center;
+}
+
+.roadmap-light{
+  background-image: url('/light_yellow_alt.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top;
+}
+.roadmap-coins-meteors{
+  background-image: url('/roadmap_coins.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+}
+
+.roadmap-deco{
+  background-image: url('/roadmap_coins.png'), url('/light_yellow_alt.png');
+  background-repeat: no-repeat;
+  background-size: contain, 100% 100%;
+  background-position: top;
+}
+
+.pique-png{
+  background-image: url('/piquemenu.png');
+  background-repeat: no-repeat;
+  background-size:  contain, 110% 110%;
+  background-position: center;
+}
+
+@media  (max-width: 768px) {
+  .hero-coins{
+    background-image: url('/mobilehero.png');
+    background-size: 100% 71%; 
+    background-position: bottom;
+  }
+
+
+
+  .background-button-image {
+    background-image: url('/buynow_mobile.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  
+  .header-left {
+    background-image: url('/navbar/left.png');
+    background-repeat: no-repeat;
+    background-size: 100% 60%;
+    margin-right: 0px;
+    
+  }
+  .header-right {
+    background-image: url('/navbar/right.png');
+    background-repeat: no-repeat;
+    background-size: 100% 60%;
+    margin-right: 30px;
+  }
+}
+
+@media  (max-width: 768px) {
+ 
+  .background-home-image {
+    background-image: url('/homecontainer.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .on-chain{
+    background-image: url('/onchainmobile.png');
+    background-repeat: no-repeat;
+    background-size: 107% 107%;
+  }
+
+
+}
+@media  (max-width: 500px) {
+ 
+  .background-home-image {
+    background-image: url('/homecontainer.png');
+    background-repeat: no-repeat;
+
+    background-size: 100% 90%;
+    background-position: center;
+  }
+
+  .pools-meteors{
+    background-image: url('/meteors-mobile.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
+    z-index: 100;
+  }
+  
+  .pools1-meteors{
+    background-image: url('/meteors1.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center
+
+  }
+
+}
+
+
+
+@media (min-width: 768px) {
+  .background-home-image {
+    background-image: url('/Subtract.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .background-about-image{
+    background-image: url('/hero.png');
+    background-repeat: no-repeat;
+    background-size: 103% 105%;
+    background-position: center;
+  }
+}
+
+html, body {
+  scrollbar-width: none; /* Pour Firefox */
+  -ms-overflow-style: none;  /* Pour Internet Explorer et Edge */
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none; /* Masquer la barre de défilement pour WebKit */
+}
+
+.font_title {
+  /* Gradient text */
+  background: linear-gradient(to bottom, #FFFFFF 0%, #BDB6A1 56%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* Gradient border */
+  text-shadow: 1px solid transparent;
+  border-image: linear-gradient(to bottom, #B6973C, #816A26);
+  border-image-slice: 1;
+
+  
+  /* Apply opacity to the border */
+  position: relative;
+  
+
+
+  padding: 10px;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) scale(1); }
+  10% { transform: translate(-1px, -2px) scale(1.02); }
+  20% { transform: translate(-3px, 0px) scale(1.04); }
+  30% { transform: translate(3px, 2px) scale(1.06); }
+  40% { transform: translate(1px, -1px) scale(1.08); }
+  50% { transform: translate(-1px, 2px) scale(1.10); }
+  60% { transform: translate(-3px, 1px) scale(1.08); }
+  70% { transform: translate(3px, 1px) scale(1.06); }
+  80% { transform: translate(-1px, -1px) scale(1.04); }
+  90% { transform: translate(1px, 2px) scale(1.02); }
+  100% { transform: translate(1px, -2px) scale(1); }
+}
+
+.shake-animation:hover {
+  animation: shake 0.8s ease-in-out infinite;
+}
+
