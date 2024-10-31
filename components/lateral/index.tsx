@@ -20,6 +20,11 @@ const HorizontalScrollCarousel = () => {
   });
 
   const x = useTransform(scrollYProgress, [0, 0.6666], ["0%", "-66.66%"]);
+  const opacities = [
+    useTransform(scrollYProgress,[0, 0.6666],[0, 1]),
+    useTransform(scrollYProgress,[0, 0.6666],[0, 1]),
+    useTransform(scrollYProgress,[0, 0.6666],[0, 1]),
+    ]
 
   return (
     <section ref={targetRef} className="relative h-[300vh] w-full pt-16">
@@ -46,15 +51,7 @@ const HorizontalScrollCarousel = () => {
               md:-translate-x-[10rem] sm:-translate-y-[1rem]
               h-full w-auto object-contain"
               style={{
-                opacity: useTransform(
-                  scrollYProgress,
-                  [
-                    Math.max(0, (index - 1) / 3),
-                    index / 3,
-                    Math.min(0.6666, (index + 1) / 3),
-                  ],
-                  [0, 1, 0]
-                ),
+                opacity: opacities[index],
               }}
             />
           ))}
