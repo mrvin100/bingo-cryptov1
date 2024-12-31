@@ -17,7 +17,10 @@ interface Pools {
   price?: string; // Assurez-vous que 'price' est inclus
 }
 
-export const PoolCard = ({ pool, index }: any) => {
+export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
+  pool,
+  index,
+}) => {
   const controls = useAnimation();
   const buttonControls = useAnimation(); // Pour l'animation du bouton
   const [ref, inView] = useInView({
