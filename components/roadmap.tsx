@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef, useEffect, useState } from "react";
 import clsx from "clsx";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
@@ -33,31 +34,46 @@ const Roadmap = () => {
         "(October 2021 - October 2023) From October 2021 to today, we’ve expanded like wildfire! Our player base has multiplied, and we’ve launched new features like special draws and massive progressive jackpots. We’ve gone global, localizing in multiple languages, and now our platform is used by millions worldwide. With every draw, the prize pools get bigger, and the opportunities to win life-changing rewards keep skyrocketing!",
     },
   ];
-
-  const containerRef = useRef(null);
-  const bulletsRef = useRef([]);
-  const progressBarRef = useRef(null);
-  const [activeBullets, setActiveBullets] = useState([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const bulletsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const progressBarRef = useRef<HTMLDivElement | null>(null);
+  const [activeBullets, setActiveBullets] = useState<boolean[]>([]);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
-
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
+  const fadeInOpacities = roadmap.map((_, index) =>
+    useTransform(
+      scrollYProgress,
+      [index / (roadmap.length + 1), (index + 0.8) / (roadmap.length + 1)],
+      [0, 1]
+    )
+  );
+  const translateYs = roadmap.map((_, index) =>
+    useTransform(
+      scrollYProgress,
+      [index / (roadmap.length + 1), (index + 0.5) / (roadmap.length + 1)],
+      [10, 0]
+    )
+  );
+
   useEffect(() => {
+    bulletsRef.current = roadmap.map(() => null)
     const handleScroll = () => {
       if (bulletsRef.current && progressBarRef.current) {
         const progressBarRect = progressBarRef.current.getBoundingClientRect();
 
         const newActiveBullets = bulletsRef.current.map((bullet) => {
-          if (!bullet) return false;
-          const bulletRect = bullet.getBoundingClientRect();
-          return bulletRect.top <= progressBarRect.bottom;
+          // if (!bullet) return false;
+          // const bulletRect = bullet.getBoundingClientRect();
+          // return bulletRect.top <= progressBarRect.bottom;
+          return bullet ? bullet.getBoundingClientRect().top <= progressBarRect.bottom : false
         });
         setActiveBullets(newActiveBullets);
       }
@@ -104,23 +120,6 @@ const Roadmap = () => {
           }}
         />
         {roadmap.map((road, index) => {
-          const fadeInOpacity = useTransform(
-            scrollYProgress,
-            [
-              index / (roadmap.length + 1),
-              (index + 0.8) / (roadmap.length + 1),
-            ],
-            [0, 1]
-          );
-          const translateY = useTransform(
-            scrollYProgress,
-            [
-              index / (roadmap.length + 1),
-              (index + 0.5) / (roadmap.length + 1),
-            ],
-            [10, 0]
-          );
-
           const bulletImageSrc = activeBullets[index]
             ? "/coin.gif"
             : "/logob.svg";
@@ -134,8 +133,8 @@ const Roadmap = () => {
                 { "sm:mr-auto": road.start === "1" }
               )}
               style={{
-                opacity: fadeInOpacity,
-                y: translateY,
+                opacity: fadeInOpacities[index],
+                y: translateYs[index],
               }}
             >
               <div
@@ -145,14 +144,17 @@ const Roadmap = () => {
                 })}
               >
                 <div className="text-sm text-white/50 uppercase tracking-wide">
-                Bingo Crypto
+                  Bingo Crypto
                 </div>
                 <h2 className="pgradient-text mb-6 uppercase text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight font-bold relative">
                   {road.title}
                   <motion.img
                     src={bulletImageSrc}
                     alt="Bullet"
-                    ref={(el) => (bulletsRef.current[index] = el)}
+                    // ref={(el) => (bulletsRef.current[index] = el)}
+                    ref={(el) => {
+                      if (el) bulletsRef.current[index] = el;
+                    }}
                     className={clsx(
                       "w-8 h-8 inline-block absolute ",
                       "left-[-3rem]",

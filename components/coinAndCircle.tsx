@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 
-const CoinAndCircle = ({ onClick, onHoverChange, scale = 1 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+interface CoinAndCircleProps {
+  onClick: any, 
+  onHoverChange: any, 
+  scale: number
+}
+
+const CoinAndCircle = ({ onClick, onHoverChange, scale = 1 }:CoinAndCircleProps) => {
+  const [isHovered, setIsHovered] = React.useState(false);
   const controlsOuter = useAnimation();
   const controlsInner = useAnimation();
   const controlsCoin = useAnimation();
 
-  useEffect(() => {
+  React.useEffect(() => {
     controlsOuter.set({ scale: 4 });
     controlsInner.set({ scale: 4 });
 
@@ -63,7 +69,7 @@ const CoinAndCircle = ({ onClick, onHoverChange, scale = 1 }) => {
     sequence();
   }, [controlsOuter, controlsInner]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     controlsCoin.start({ scale });
   }, [scale, controlsCoin]);
 
@@ -90,7 +96,7 @@ const CoinAndCircle = ({ onClick, onHoverChange, scale = 1 }) => {
     onClick();
   };
 
-  const handleHover = (hovering) => {
+  const handleHover = (hovering: boolean) => {
     setIsHovered(hovering);
     onHoverChange(hovering);
   };

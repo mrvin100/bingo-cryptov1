@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import clsx from "clsx";
 import Link from "next/link";
 
-interface Pools {
+interface Pool {
   id: string;
   gains: string;
   participant: string;
@@ -15,12 +15,10 @@ interface Pools {
   status: "infinity" | "billionaire";
   rotate?: string;
   price?: string; // Assurez-vous que 'price' est inclus
+  index: number
 }
 
-export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
-  pool,
-  index,
-}) => {
+const PoolCard:FC<Pool> = ({id, gains, participant, image, status, rotate, price, index}) => {
   const controls = useAnimation();
   const buttonControls = useAnimation(); // Pour l'animation du bouton
   const [ref, inView] = useInView({
@@ -41,7 +39,7 @@ export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
     const interval = setInterval(() => {
       setButtonText((prevText) =>
         prevText === "buy tickets now"
-          ? `Only ${pool.price}`
+          ? `Only ${price}`
           : "buy tickets now"
       );
 
@@ -53,7 +51,7 @@ export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [buttonControls, pool.price]);
+  }, [buttonControls, price]);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -74,7 +72,7 @@ export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
       initial="hidden"
       variants={cardVariants}
       className={clsx(
-        `background-pool-${pool.id}`,
+        `background-pool-${id}`,
         "grid pb-2 pt-12 m-0 h-[25rem] max-w-[22rem] mx-auto w-full rounded-md",
         index === 1 ? "scale-105" : "scale-95",
         "hover:scale-110 overflow-hidden relative"
@@ -87,32 +85,32 @@ export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
     >
       <div>
         <Image
-          src={`/${pool.image}`}
+          src={`/${image}`}
           alt="pool image"
           height={300}
           width={300}
-          className={`mx-auto hover:animate-flip ${pool.rotate}`}
+          className={`mx-auto hover:animate-flip ${rotate}`}
         />
       </div>
       <div className="text-center uppercase tracking-wide leading-[2rem] grid grid-cols-2 font-bebas-neue">
         <div className="">
           <div className="text-2xl text-white/50">Gains</div>
           <div className="text-4xl font-extrabold gradient-text">
-            {pool.gains}
+            {gains}
           </div>
         </div>
         <div className="">
           <div className="text-2xl text-white/50">Participant</div>
           <div className="text-4xl font-extrabold gradient-text">
-            {pool.participant}
+            {participant}
           </div>
         </div>
       </div>
       <div className="text-center uppercase tracking-wide leading-[2rem] items-center justify-center grid grid-cols-[repeat(auto-fit,minmax(7rem,9.5rem))]">
-        <Link href={`/pools/${pool.id}`}>
+        <Link href={`/pools/${id}`}>
           <div
             className={clsx(
-              `pool-learnmore-${pool.id}`,
+              `pool-learnmore-${id}`,
               "text-sm font-bebas_neue flex items-center justify-center h-[2rem] text-white/65 hover:text-white"
             )}
           >
@@ -122,7 +120,7 @@ export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
         {/* Bouton avec animation */}
         <motion.div
           className={clsx(
-            `pool-buynow-${pool.id}`,
+            `pool-buynow-${id}`,
             "text-sm font-bebas_neue flex items-center justify-center h-[2rem] text-black font-semibold hover:text-white"
           )}
           animate={buttonControls} // Appliquez l'animation ici
@@ -147,7 +145,7 @@ export const PoolCard: React.FC<{ pool: Pools; index: number }> = ({
 };
 
 const Pools = () => {
-  const pools: Pools[] = [
+  const pools: Pool[] = [
     {
       id: "purple",
       gains: "$20,000",
@@ -156,6 +154,7 @@ const Pools = () => {
       status: "billionaire",
       rotate: "rotate-[-5.64deg]",
       price: "$90", // Ajoutez le prix ici
+      index: 0
     },
     {
       id: "gold",
@@ -164,6 +163,7 @@ const Pools = () => {
       image: "golden_ticket2.png",
       status: "infinity",
       price: "$150", // Et ici
+      index: 1
     },
     {
       id: "pink",
@@ -173,6 +173,7 @@ const Pools = () => {
       status: "billionaire",
       rotate: "rotate-[5.64deg]",
       price: "$75", // Et ici
+      index: 2
     },
   ];
 
@@ -208,8 +209,8 @@ const Pools = () => {
           </motion.div>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] justify-center gap-6 sm:gap-8 items-center w-full max-w-5xl">
             {pools.length > 0 &&
-              pools.map((pool, index) => (
-                <PoolCard key={pool.id} pool={pool} index={index} />
+              pools.map((pool) => (
+                <PoolCard key={pool.id} {...pool} />
               ))}
           </div>
         </section>

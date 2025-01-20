@@ -63,8 +63,8 @@ const Header = () => {
   const [winner, setWinner] = useState({ name: "" });
   const [showGif, setShowGif] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const burgerRef = useRef(null);
-  const menuRef = useRef(null);
+  const burgerRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -115,12 +115,12 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         menuRef.current &&
-        !menuRef.current.contains(event.target) &&
+        !menuRef.current.contains(event.target as Node) &&
         burgerRef.current &&
-        !burgerRef.current.contains(event.target)
+        !burgerRef.current.contains(event.target as Node)
       ) {
         setMenuOpen(false);
       }

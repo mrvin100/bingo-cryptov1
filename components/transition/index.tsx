@@ -56,15 +56,15 @@ const HomePage: React.FC<HomePageProps> = ({
     },
   };
 
-  function generateAssets() {
-    const allAssets = [];
+  function generateAssets(): React.ReactNode[] {
+    const allAssets: React.ReactNode[] = [];
     assets.forEach((asset) => {
       allAssets.push(...createAssets(30, asset));
     });
     return allAssets;
   }
 
-  function createAssets(count: number, assetSrc: string) {
+  function createAssets(count: number, assetSrc: string): React.ReactNode[] {
     return Array.from({ length: count }).map((_, index) => {
       const zIndex = Math.floor(Math.random() * 20);
       const color = Math.random() > 0.5 ? "#8A60E1" : "#DABB60"; // Purple or gold stars

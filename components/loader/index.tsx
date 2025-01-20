@@ -211,7 +211,7 @@ const Loader = ({
           initial={{ opacity: 0.5 }}
         >
           <Image
-            src="/light_purple.png"
+            src="/light_yellow_alt.png"
             alt="Purple Light"
             layout="fill"
             objectFit="fill"
