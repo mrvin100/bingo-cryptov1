@@ -46,7 +46,7 @@ const Fonctioning = () => {
     },
   ];
   return (
-    <section className="functioning_deco mx-auto pt-0  p-8 w-full pb-32">
+    <section className="mx-auto pt-0  p-8 w-full pb-32">
       <div className="text-center uppercase px-4 gradient-text my-8">
         <h1
           className="gradient-text uppercase text-center text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight font-bold pb-16 color:_#816A26]

@@ -394,13 +394,6 @@
   background-position: right 20% top 30%;
 }
 
-.functioning_deco{
-  background-image: url('/light_purple.png'), url('/fonctioning_coin.png');
-  background-repeat: no-repeat;
-  background-size: contain, 100px;  
-  background-position: left -160px top, right 20% top 30%;
-}
-
 /* country deco */
 
 .country-ticket{
